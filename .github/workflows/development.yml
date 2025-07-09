@@ -131,7 +131,7 @@ jobs:
         id: find-java-home
         shell: bash
         run: |
-          JAVA_PATH=$(find /Users/runner/hostedtoolcache/Java_Zulu_jdk/8*/ -type d -maxdepth 0 | head -n 1)
+          JAVA_PATH=$(find /Users/runner/hostedtoolcache/Java_Zulu_jdk/8*/arm64 -type d -maxdepth 0 | head -n 1)
           echo "Detected JAVA_HOME: $JAVA_PATH"
           ls "${JAVA_PATH}arm64"
           echo "java-home=$JAVA_PATH" >> "$GITHUB_OUTPUT"
