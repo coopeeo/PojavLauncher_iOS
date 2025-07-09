@@ -133,7 +133,7 @@ jobs:
         run: |
           JAVA_PATH=$(find /Users/runner/hostedtoolcache/Java_Zulu_jdk/8*/ -type d -maxdepth 0 | head -n 1)
           echo "Detected JAVA_HOME: $JAVA_PATH"
-          ls "$JAVA_PATH"
+          ls "${JAVA_PATH}arm64"
           echo "java-home=$JAVA_PATH" >> "$GITHUB_OUTPUT"
 
       - name: Install gmake
@@ -146,8 +146,8 @@ jobs:
           export PATH="/opt/procursus/bin:/opt/homebrew/bin:${JAVA_HOME}bin:$PATH"
           export BOOTJDK="$JAVA_HOME"
           echo "Using JAVA_HOME: $JAVA_HOME"
-          "$BOOTJDK/bin/java" -version
-          "$BOOTJDK/bin/javac" -version
+          "${BOOTJDK}bin/java" -version
+          "${BOOTJDK}bin/javac" -version
           export RUNNER=1 SLIMMED=1
           if [ "${{ matrix.platform_name }}" == "ios" ]; then
             # Build ipa and tipa for iOS
