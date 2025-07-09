@@ -144,10 +144,10 @@ jobs:
           JAVA_HOME: ${{ steps.find-java-home.outputs.java-home }}
         run: |
           export PATH="/opt/procursus/bin:/opt/homebrew/bin:$JAVA_HOME/bin:$PATH"
-          export BOOTJDK="$JAVA_HOME"
+          export BOOTJDK="$JAVA_HOME/bin"
           echo "Using JAVA_HOME: $JAVA_HOME"
-          "$BOOTJDK/bin/java" -version
-          "$BOOTJDK/bin/javac" -version
+          "$BOOTJDK/java" -version
+          "$BOOTJDK/javac" -version
           export RUNNER=1 SLIMMED=1
           if [ "${{ matrix.platform_name }}" == "ios" ]; then
             # Build ipa and tipa for iOS
