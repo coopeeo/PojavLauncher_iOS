@@ -25,16 +25,16 @@ jobs:
     
     runs-on: macos-latest
     steps:
-      - name: Remove work folders
-        env:
-          password: ${{ secrets.ELLIE_MINI_SECRET }}
-        run: |
-          echo "before"
-          ls -lah ./
-          echo $password | sudo -S rm -rf ./* || true
-          echo $password | sudo -S rm -rf ./.??* || true
-          echo "after"
-          ls -lah ./
+      #- name: Remove work folders
+        #env:
+        #  password: ${{ secrets.ELLIE_MINI_SECRET }}
+        #run: |
+        #  echo "before"
+        #  ls -lah ./
+        #  echo $password | sudo -S rm -rf ./* || true
+        #  echo $password | sudo -S rm -rf ./.??* || true
+        #  echo "after"
+        #  ls -lah ./
           
       - name: Checkout repository
         uses: actions/checkout@main
@@ -120,6 +120,12 @@ jobs:
           repo: coopeeo/android-openjdk-build-multiarch
           branch: buildjre17-21
           name: jre21-ios-aarch64
+
+      - name: Set up JDK 8
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '8'
 
       - name: Build for ${{ matrix.platform_name }}
         env:
