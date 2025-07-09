@@ -93,7 +93,7 @@ jobs:
           path: depends
           workflow_conclusion: success
           allow_forks: false
-          repo: PojavLauncherTeam/android-openjdk-build-multiarch
+          repo: coopeeo/android-openjdk-build-multiarch
           branch: buildjre8
           name: jre8-ios-aarch64
 
@@ -125,6 +125,7 @@ jobs:
         env:
           password: ${{ secrets.ELLIE_MINI_SECRET }}
         run: |
+          brew install make
           export PATH=/opt/procursus/bin:/opt/homebrew/bin:$PATH
           export RUNNER=1 SLIMMED=1
           if [ "${{ matrix.platform_name }}" == "ios" ]; then
