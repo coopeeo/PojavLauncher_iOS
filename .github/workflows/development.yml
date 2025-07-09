@@ -133,6 +133,7 @@ jobs:
         run: |
           JAVA_PATH=$(find /Users/runner/hostedtoolcache/Java_Zulu_jdk/8*/ -type d -maxdepth 0 | head -n 1)
           echo "Detected JAVA_HOME: $JAVA_PATH"
+          ls "$JAVA_PATH"
           echo "java-home=$JAVA_PATH" >> "$GITHUB_OUTPUT"
 
       - name: Install gmake
@@ -142,7 +143,7 @@ jobs:
         env:
           JAVA_HOME: ${{ steps.find-java-home.outputs.java-home }}
         run: |
-          export PATH="/opt/procursus/bin:/opt/homebrew/bin:$JAVA_HOME/bin:$PATH"
+          export PATH="/opt/procursus/bin:/opt/homebrew/bin:${JAVA_HOME}bin:$PATH"
           export BOOTJDK="$JAVA_HOME"
           echo "Using JAVA_HOME: $JAVA_HOME"
           "$BOOTJDK/bin/java" -version
