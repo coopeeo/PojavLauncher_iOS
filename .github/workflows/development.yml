@@ -105,7 +105,7 @@ jobs:
           path: depends
           workflow_conclusion: completed
           allow_forks: false
-          repo: PojavLauncherTeam/android-openjdk-build-multiarch
+          repo: coopeeo/android-openjdk-build-multiarch
           branch: buildjre17-21
           name: jre17-ios-aarch64
 
@@ -117,7 +117,7 @@ jobs:
           path: depends
           workflow_conclusion: completed
           allow_forks: false
-          repo: PojavLauncherTeam/android-openjdk-build-multiarch
+          repo: coopeeo/android-openjdk-build-multiarch
           branch: buildjre17-21
           name: jre21-ios-aarch64
 
