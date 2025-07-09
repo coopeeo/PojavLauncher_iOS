@@ -127,11 +127,23 @@ jobs:
           distribution: 'zulu'
           java-version: '8'
 
+      - name: Find the JDK
+        id: find-java-home
+        shell: bash
+        run: |
+          JAVA_PATH=$(find /Users/runner/hostedtoolcache/Java_Zulu_jdk/8*/ -type d -maxdepth 0 | head -n 1)
+          echo "Detected JAVA_HOME: $JAVA_PATH"
+          echo "java-home=$JAVA_PATH" >> "$GITHUB_OUTPUT"
+
+      - name: Install gmake
+        run: brew install make
+        
       - name: Build for ${{ matrix.platform_name }}
         env:
-          password: ${{ secrets.ELLIE_MINI_SECRET }}
+          JAVA_HOME: ${{ steps.find-java-home.outputs.java-home }}
         run: |
-          brew install make
+          echo "Using JAVA_HOME: $JAVA_HOME"
+          java -version
           export PATH=/opt/procursus/bin:/opt/homebrew/bin:$PATH
           export RUNNER=1 SLIMMED=1
           if [ "${{ matrix.platform_name }}" == "ios" ]; then
